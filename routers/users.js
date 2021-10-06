@@ -86,4 +86,12 @@ router.delete("/:id", async (request, response, next) => {
   }
 })
 
+//delete list from user
+router.delete("/:userId/lists/:listId", async (request, response, next) => {
+  //check if the user is the owner of the list
+  if (request.params.userId !== list.userId){
+    response.status(401).send("Not authorized")
+  }
+})
+
 module.exports = router
